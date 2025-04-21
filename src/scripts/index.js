@@ -1,0 +1,27 @@
+// CSS imports
+import "../styles/styles.css";
+import "./components/story-card";
+import "leaflet/dist/leaflet.css";
+
+import App from "./pages/app";
+import { Camera } from "./utils/camera";
+import { viewTransition } from "./utils";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const app = new App({
+    content: document.querySelector("#main-content"),
+    drawerButton: document.querySelector("#drawer-button"),
+    navigationDrawer: document.querySelector("#navigation-drawer"),
+  });
+  
+  viewTransition(async () => {
+    await app.renderPage();
+  });
+
+  window.addEventListener("hashchange", async () => {
+    Camera.stopAllStreams();
+    viewTransition(async () => {
+      await app.renderPage();
+    });
+  });
+});

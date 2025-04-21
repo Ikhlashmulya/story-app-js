@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.container {
+  padding-inline: 32px;
+  margin-inline: auto;
+  max-width: 1300px;
+}
+
+header {
+  background-color: lightskyblue;
+}
+
+.main-header {
+  min-height: 90px;
+  padding-block: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.brand-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.navigation-drawer {
+  min-height: 100vh;
+  width: 200px;
+  padding: 20px 10px;
+  background-color: #fff;
+
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  box-shadow: 0 0 4px 2px #00000033;
+  transform: translateX(-100%);
+  transition: transform 350ms;
+
+  z-index: 9999;
+}
+
+.navigation-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-button {
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+
+  display: inline-block;
+  background-color: transparent;
+
+  font-weight: bold;
+  font-size: 28px;
+  color: #141e16;
+
+  cursor: pointer;
+}
+
+.nav-list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px 20px;
+}
+
+.nav-list li a {
+  padding: 6px 10px;
+
+  display: block;
+
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+/* MAIN */
+.main-content {
+  padding-block: 20px;
+}
+
+.form-auth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid gray;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  margin: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-auth-container > #btn-submit {
+  padding: 0.75rem;
+  background-color: #57c4e5;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-auth-container > #btn-submit:hover {
+  background-color: #409fc5;
+}
+
+.form-auth-container input {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid gray;
+  border-radius: 8px;
+  transition: border 0.3s;
+}
+
+.form-auth-container input:focus {
+  border-color: #57c4e5;
+  outline: none;
+}
+
+.form-auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+#story-list {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Write your styles more here */
+
+@media screen and (width > 1000px) {
+  .navigation-drawer {
+    min-height: auto;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: static;
+    box-shadow: none;
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: row;
+  }
+
+  .nav-list li a {
+    display: inline-block;
+  }
+
+  .drawer-button {
+    display: none;
+  }
+
+  .form-auth-container {
+    width: 80%;
+  }
+
+  #story-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+#welcome {
+  margin-bottom: 15px;
+}
+
+.loader-button {
+  margin-top: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+.btn {
+  background-color: #57c4e5;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #45b1d4;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff !important;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.btn:hover {
+  background-color: #45b1d4;
+}
+
+.camera-container {
+  margin-top: 16px;
+  display: none;
+}
+
+.camera-container.open {
+  display: flex;
+  gap: 5px;
+}
+
+.form-camera {
+  flex: 1;
+  max-width: 50%;
+  border-radius: 4px;
+  background-color: gray;
+}
+
+#new-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#new-form textarea {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid gray;
+  border-radius: 4px;
+  transition: border 0.3s;
+  width: 100%;
+  resize: vertical;
+}
