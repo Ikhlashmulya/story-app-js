@@ -13,12 +13,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     drawerButton: document.querySelector("#drawer-button"),
     navigationDrawer: document.querySelector("#navigation-drawer"),
   });
-  
+
   viewTransition(async () => {
     await app.renderPage();
   });
 
   window.addEventListener("hashchange", async () => {
+    if (location.hash == "#main-content") {
+      return;
+    }
+
     Camera.stopAllStreams();
     viewTransition(async () => {
       await app.renderPage();

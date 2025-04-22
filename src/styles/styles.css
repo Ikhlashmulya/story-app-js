@@ -17,6 +17,7 @@ body {
 
 header {
   background-color: lightskyblue;
+  view-transition-name: header;
 }
 
 .main-header {
@@ -264,4 +265,60 @@ header {
   transition: border 0.3s;
   width: 100%;
   resize: vertical;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: black;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 4px;
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-to-content:focus {
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  clip: auto;
+  white-space: normal;
+}
+@keyframes move-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+::view-transition-old(root) {
+  animation-name: move-out;
+  animation-duration: 500ms;
+}
+
+::view-transition-new(root) {
+  animation-name: move-in;
+  animation-duration: 500ms;
 }
