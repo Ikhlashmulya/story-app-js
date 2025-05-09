@@ -43,6 +43,15 @@ registerRoute(
   })
 );
 
+registerRoute(
+  ({ url }) => {
+    return url.origin.includes("tile.openstreetmap.org");
+  },
+  new CacheFirst({
+    cacheName: "map-api",
+  })
+);
+
 self.addEventListener("push", (event) => {
   console.log("Service worker pushing...");
 
