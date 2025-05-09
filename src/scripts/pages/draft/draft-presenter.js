@@ -2,42 +2,46 @@ import { parseActivePathname } from "../../routes/url-parser";
 import { getToken } from "../../utils";
 
 export default class DraftPresenter {
+  #view;
+  #db;
+  #model;
+
   constructor({ view, db, model = null }) {
-    this._view = view;
-    this._db = db;
-    this._model = model;
+    this.#view = view;
+    this.#db = db;
+    this.#model = model;
   }
 
   async showDraftStories() {
-    const stories = await this._db.getStories();
-    this._view.showDraftStories(stories);
+    const stories = await this.#db.getStories();
+    this.#view.showDraftStories(stories);
   }
 
   async showDraftDetail() {
     const { id } = parseActivePathname();
-    const story = await this._db.getStoryById(id);
+    const story = await this.#db.getStoryById(id);
     story.photoUrl = URL.createObjectURL(story.blob);
-    this._view.showDraftDetail(story);
+    this.#view.showDraftDetail(story);
   }
 
   async publishDraft() {
     const { id } = parseActivePathname();
-    const story = await this._db.getStoryById(id);
+    const story = await this.#db.getStoryById(id);
     const token = getToken();
-    await this._model.addStory(token, {
+    await this.#model.addStory(token, {
       description: story.description,
       lat: story.lat,
       lon: story.lon,
       blob: story.blob,
     });
-    await this._db.deleteStory(id);
+    await this.#db.deleteStory(id);
     alert("Draft berhasil dipublish");
     location.hash = "/";
   }
 
   async deleteDraft() {
     const { id } = parseActivePathname();
-    await this._db.deleteStory(id);
+    await this.#db.deleteStory(id);
     alert("Draft berhasil dihapus");
     location.hash = "/draft";
   }
