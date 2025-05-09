@@ -1,3 +1,4 @@
+import Database from "../../data/database";
 import { getToken } from "../../utils";
 
 export default class NewPresenter {
@@ -22,5 +23,9 @@ export default class NewPresenter {
       console.error("error add story: ", error.message);
       this.#view.onFailed(error.message);
     }
+  }
+
+  async addStoryToDraft(data) {
+    await Database.addStory(data);
   }
 }

@@ -1,6 +1,7 @@
 // CSS imports
 import "../styles/styles.css";
 import "./components/story-card";
+import "./components/story-card-draft";
 import "leaflet/dist/leaflet.css";
 
 import App from "./pages/app";
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   await registerServiceWorker();
-  
+
   window.addEventListener("hashchange", async () => {
     if (location.hash == "#main-content") {
       return;

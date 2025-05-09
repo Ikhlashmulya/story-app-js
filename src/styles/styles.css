@@ -234,6 +234,27 @@ header {
   background-color: #45b1d4;
 }
 
+.btn-danger {
+  background-color: #e42121;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #45b1d4;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff !important;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.btn-danger:hover {
+  background-color: #e42121c5;
+}
+
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;

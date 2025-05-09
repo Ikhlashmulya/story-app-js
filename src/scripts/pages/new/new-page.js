@@ -37,6 +37,7 @@ export default class NewPage {
           <input name="lat-input" id="lat-input" hidden />
           <input name="lon-input" id="lon-input" hidden />
           <button type="submit" class="btn">Add Story</button>
+          <button type="button" class="btn" id="save-to-draft">Save to draft</button>
         </form>
       </section>
     `;
@@ -47,6 +48,26 @@ export default class NewPage {
     this.#setupMap();
     this.#presenter = new NewPresenter({ model: StoryAppAPI, view: this });
     this.#addSubmitListener();
+    this.#addSaveToDraftListener();
+  }
+
+  #addSaveToDraftListener() {
+    const saveToDraftButton = document.getElementById("save-to-draft");
+    const latInput = document.getElementById("lat-input");
+    const lonInput = document.getElementById("lon-input");
+    const description = document.getElementById("description");
+
+    saveToDraftButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      await this.#presenter.addStoryToDraft({
+        blob: this.#takenPicture,
+        description: description.value,
+        lon: lonInput.value,
+        lat: latInput.value,
+      });
+      alert("Story berhasil disimpan ke draft");
+      location.hash = "/draft";
+    });
   }
 
   #addSubmitListener() {

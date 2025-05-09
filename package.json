@@ -27,6 +27,7 @@
     "workbox-webpack-plugin": "^7.3.0"
   },
   "dependencies": {
+    "idb": "^8.0.3",
     "leaflet": "^1.9.4",
     "workbox-cacheable-response": "^7.3.0",
     "workbox-precaching": "^7.3.0",

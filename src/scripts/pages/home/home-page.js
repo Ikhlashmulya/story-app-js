@@ -10,6 +10,7 @@ export default class HomePage {
       <section class="container">
         <h1 id="welcome"></h1>
         <a href="#/new" class="btn">New Story</a>
+        <a href="#/draft" class="btn">Draft</a>
         <div id="loading"></div>
         <article id="story-list"></article>
       </section>
