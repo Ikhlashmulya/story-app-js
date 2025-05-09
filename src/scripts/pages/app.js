@@ -1,6 +1,11 @@
 import routes from "../routes/routes";
 import { getActiveRoute } from "../routes/url-parser";
 import { getToken } from "../utils";
+import {
+  isCurrentPushSubscriptionAvailable,
+  subscribe,
+  unsubscribe,
+} from "../utils/notification-helper";
 
 class App {
   #content = null;
@@ -12,7 +17,23 @@ class App {
     this.#drawerButton = drawerButton;
     this.#navigationDrawer = navigationDrawer;
 
+    this.#setupNotification();
     this._setupDrawer();
+  }
+
+  async #setupNotification() {
+    const subscribeButton = document.getElementById("subscribe-notification");
+    const isSubscribe = await isCurrentPushSubscriptionAvailable();
+    if (isSubscribe) subscribeButton.textContent = "unsubscribe";
+    subscribeButton.addEventListener("click", async () => {
+      if (isSubscribe) {
+        await unsubscribe();
+        subscribeButton.textContent = "subscribe";
+      } else {
+        await subscribe();
+        subscribeButton.textContent = "unsubscribe";
+      }
+    });
   }
 
   _setupDrawer() {

@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 import App from "./pages/app";
 import { Camera } from "./utils/camera";
-import { viewTransition } from "./utils";
+import { registerServiceWorker, viewTransition } from "./utils";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const app = new App({
@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     await app.renderPage();
   });
 
+  await registerServiceWorker();
+  
   window.addEventListener("hashchange", async () => {
     if (location.hash == "#main-content") {
       return;
