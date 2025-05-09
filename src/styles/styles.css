@@ -234,6 +234,11 @@ header {
   background-color: #45b1d4;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .camera-container {
   margin-top: 16px;
   display: none;

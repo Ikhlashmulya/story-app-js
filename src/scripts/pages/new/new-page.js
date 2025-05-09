@@ -14,7 +14,7 @@ export default class NewPage {
       <section class="container">
         <form id="new-form">
           <div id="camera">
-            <button id="take-photo" class="btn" type="button">
+            <button id="take-photo" class="btn" type="button" disabled>
               Ambil Gambar
             </button>
             <button id="open-camera" class="btn" type="button">
@@ -71,6 +71,8 @@ export default class NewPage {
     const container = document.querySelector(".camera-container");
     const videoElement = document.getElementById("camera-video");
     const canvasElement = document.getElementById("camera-canvas");
+    const takePhoto = document.getElementById("take-photo");
+
     this.#camera = new Camera({ video: videoElement, canvas: canvasElement });
 
     let isCameraOpen = false;
@@ -81,15 +83,16 @@ export default class NewPage {
         isCameraOpen = true;
         container.classList.toggle("open");
         button.textContent = "Tutup Kamera";
+        takePhoto.disabled = false;
       } else {
         this.#camera.stop();
         isCameraOpen = false;
         container.classList.toggle("open");
         button.textContent = "Buka Kamera";
+        takePhoto.disabled = true;
       }
     });
 
-    const takePhoto = document.getElementById("take-photo");
     const previewPhoto = document.getElementById("preview-photo");
 
     takePhoto.addEventListener("click", async () => {
