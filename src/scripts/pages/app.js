@@ -75,6 +75,7 @@ class App {
 
     if (!token && !publicUrl.includes(url)) {
       location.hash = "/login";
+      return;
     }
 
     const page = routes[url];
