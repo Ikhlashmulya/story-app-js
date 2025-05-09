@@ -70,7 +70,7 @@ class App {
       navAuth.hidden = true;
     }
 
-    const publicUrl = ["/register"];
+    const publicUrl = ["/register", "/login"];
     const url = getActiveRoute();
 
     if (!token && !publicUrl.includes(url)) {
