@@ -1,0 +1,51 @@
+{
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "name": "Story App",
+  "short_name": "storyapp",
+  "description": "aplikasi untuk berbagi story",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#57c4e5",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/maskable_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshots/Screenshot-1.png",
+      "sizes": "1304x619",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/Screenshot-2.png",
+      "sizes": "1304x619",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/Screenshot-3.png",
+      "sizes": "868x1396",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "images/screenshots/Screenshot-4.png",
+      "sizes": "876x1402",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
