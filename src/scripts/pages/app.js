@@ -1,6 +1,6 @@
 import routes from "../routes/routes";
 import { getActiveRoute } from "../routes/url-parser";
-import { getToken } from "../utils";
+import { getToken, isServiceWorkerAvailable } from "../utils";
 import {
   isCurrentPushSubscriptionAvailable,
   subscribe,
@@ -17,21 +17,28 @@ class App {
     this.#drawerButton = drawerButton;
     this.#navigationDrawer = navigationDrawer;
 
-    this.#setupNotification();
     this._setupDrawer();
   }
 
   async #setupNotification() {
     const subscribeButton = document.getElementById("subscribe-notification");
     const isSubscribe = await isCurrentPushSubscriptionAvailable();
-    if (isSubscribe) subscribeButton.textContent = "unsubscribe";
-    subscribeButton.addEventListener("click", async () => {
+    
+    if (isSubscribe) {
+      subscribeButton.textContent = "unsubscribe";
+    } else {
+      subscribeButton.textContent = "subscribe";
+    }
+
+    subscribeButton.addEventListener("click", () => {
       if (isSubscribe) {
-        await unsubscribe();
-        subscribeButton.textContent = "subscribe";
+        unsubscribe().finally(() => {
+          this.#setupNotification();
+        })
       } else {
-        await subscribe();
-        subscribeButton.textContent = "unsubscribe";
+        subscribe().finally(() => {
+          this.#setupNotification();
+        })
       }
     });
   }
@@ -82,6 +89,9 @@ class App {
 
     this.#content.innerHTML = await page.render();
     await page.afterRender();
+    if (isServiceWorkerAvailable()) {
+      this.#setupNotification();
+    }
   }
 }
 
